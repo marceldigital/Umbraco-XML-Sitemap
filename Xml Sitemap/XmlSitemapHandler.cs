@@ -1,9 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Web.Caching;
 using System.Xml;
 using System.Xml.Linq;
 using Umbraco.Core;
