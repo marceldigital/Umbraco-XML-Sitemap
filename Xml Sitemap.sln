@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xml Sitemap", "Xml Sitemap\Xml Sitemap.csproj", "{4CEE392F-2D5F-40E7-B711-AFB4023E2B61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSitemap", "Xml Sitemap\XmlSitemap.csproj", "{4CEE392F-2D5F-40E7-B711-AFB4023E2B61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
