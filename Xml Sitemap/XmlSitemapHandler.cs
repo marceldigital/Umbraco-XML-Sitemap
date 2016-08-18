@@ -27,11 +27,6 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
         private static readonly string[] DocumentTypeBlacklist = {"eventYear"};
 
         /// <summary>
-        ///     Unique key to put in the cache to identify the sitemap
-        /// </summary>
-        private static readonly string CacheKey = Guid.NewGuid().ToString();
-
-        /// <summary>
         ///     Default method for the http request
         /// </summary>
         /// <param name="context"></param>
@@ -56,7 +51,7 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
             var siteRoot = umbracoHelper.TypedContentAtRoot().First();
             XDocument sitemap = null;
 
-            if (!IsSitemapInCache(context)) {
+            if (!XmlSitemapCache.IsSitemapInCache(context)) {
                 var rootNode = GenerateSitemapRoot();
 
                 sitemap = new XDocument {
@@ -67,9 +62,9 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
 
                 AddPagesToSitemap(rootNode, siteRoot);
 
-                PutSitemapInCache(context, sitemap);
+                XmlSitemapCache.PutSitemapInCache(context, sitemap);
             } else {
-                sitemap = GetSitemapFromCache(context);
+                sitemap = XmlSitemapCache.GetSitemapFromCache(context);
             }
 
             return sitemap;
@@ -107,29 +102,6 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
                     ));
             }
         }
-
-        /// <summary>
-        ///     Checks if the sitemap is in the cache
-        /// </summary>
-        /// <returns></returns>
-        private static bool IsSitemapInCache(HttpContext context)
-            => context.Cache[CacheKey] != null || context.Cache[CacheKey] is XDocument;
-
-        /// <summary>
-        ///     Gets the sitemap from the cache
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        private static XDocument GetSitemapFromCache(HttpContext context)
-            => context.Cache[CacheKey] as XDocument;
-
-        /// <summary>
-        ///     Puts the sitemap in the cache for one day
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="sitemap"></param>
-        private static void PutSitemapInCache(HttpContext context, XDocument sitemap)
-            => context.Cache.Insert(CacheKey, sitemap, null, DateTime.Now.AddDays(1), Cache.NoSlidingExpiration);
 
         /// <summary>
         ///     Puts the sitemap into the http response
