@@ -1,0 +1,58 @@
+﻿using System;
+using System.Xml.Linq;
+using Umbraco.Core.Models;
+using Umbraco.Web;
+
+namespace MarcelDigital.Umbraco.XmlSitemap.Models {
+    internal class Url : IXmlConvertable {
+        /// <summary>
+        ///     Provides the full URL of the page or sitemap, including the protocol (e.g. http, https) and a trailing slash.
+        /// </summary>
+        public string Location { get; set; }
+
+        /// <summary>
+        ///     The date that the file was last modified, in ISO 8601 format.
+        /// </summary>
+        public DateTime LastModified { get; set; }
+
+        /// <summary>
+        ///     How frequently the page may change.
+        /// </summary>
+        public string ChangeFrequency { get; set; }
+
+        /// <summary>
+        ///     The priority of that URL relative to other URLs on the site.
+        /// </summary>
+        public double Priority { get; set; }
+
+        /// <summary>
+        ///     Default constructor for the url node.
+        /// </summary>
+        public Url() {
+            ChangeFrequency = "weekly";
+            Priority = 0.5;
+        }
+
+        /// <summary>
+        ///     Constructor that fills the properties using published
+        ///     Umbraco content.
+        /// </summary>
+        /// <param name="content"></param>
+        public Url(IPublishedContent content) : this() {
+            Location = content.UrlWithDomain();
+            LastModified = content.UpdateDate;
+        }
+
+        /// <summary>
+        ///     Converts the Url to an xml node.
+        /// </summary>
+        /// <returns></returns>
+        public XElement ToXml() {
+            return new XElement("url", new XElement("loc", Location),
+                new XElement("lastmod", LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz")),
+                new XElement("changefreq", ChangeFrequency),
+                new XElement("priority", Priority.ToString("N1"))
+                );
+        }
+    }
+}

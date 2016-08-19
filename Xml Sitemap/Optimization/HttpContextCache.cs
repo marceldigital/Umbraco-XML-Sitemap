@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace MarcelDigital.Umbraco.XmlSitemap.Optimization {
     /// <summary>
-    /// Http context implementation of the cache.
+    ///     Http context implementation of the cache.
     /// </summary>
     internal class HttpContextCache : ISitemapCache {
         /// <summary>
@@ -14,12 +14,12 @@ namespace MarcelDigital.Umbraco.XmlSitemap.Optimization {
         private static readonly string CacheKey = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// The current http context
+        ///     The current http context
         /// </summary>
         private readonly HttpContext _httpContext;
 
         /// <summary>
-        /// Constructor for the cache.
+        ///     Constructor for the cache.
         /// </summary>
         /// <param name="httpContext">The current http context.</param>
         public HttpContextCache(HttpContext httpContext) {

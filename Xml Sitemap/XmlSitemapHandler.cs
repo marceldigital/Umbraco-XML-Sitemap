@@ -4,34 +4,39 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
+using MarcelDigital.Umbraco.XmlSitemap.Filters;
+using MarcelDigital.Umbraco.XmlSitemap.Generators;
 using MarcelDigital.Umbraco.XmlSitemap.Optimization;
 using Umbraco.Core;
-using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace MarcelDigital.Umbraco.XmlSitemap {
     /// <summary>
-    ///     Generetes the Xml sitemap for the umbraco website
+    ///     Generetes the Xml sitemap for the umbraco website.
     /// </summary>
     public class XmlSitemapHandler : IHttpHandler {
         /// <summary>
         ///     Specifies whether the handler can be reused in the pool
-        ///     or a new one needs to be created each time
+        ///     or a new one needs to be created each time.
         /// </summary>
         public bool IsReusable => true;
 
         /// <summary>
-        ///     List of document type aliases to exclude from the sitemap
+        ///     Caching strategy for the XML sitemap.
         /// </summary>
-        private static readonly string[] DocumentTypeBlacklist = {"eventYear"};
-
         private readonly ISitemapCache _sitemapCache;
 
         /// <summary>
-        /// Constructor for the sitemap handler
+        ///     Generation strategy for the XML sitemap.
+        /// </summary>
+        private readonly IXmlSitemapGenerator _generator;
+
+        /// <summary>
+        ///     Constructor for the sitemap handler
         /// </summary>
         public XmlSitemapHandler() {
             _sitemapCache = new HttpContextCache(HttpContext.Current);
+            _generator = new XmlSitemapGenerator();
         }
 
         /// <summary>
@@ -60,15 +65,11 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
             XDocument sitemap = null;
 
             if (!_sitemapCache.IsInCache()) {
-                var rootNode = GenerateSitemapRoot();
+                var contentFilter = new NoTemplateFilter(umbracoHelper);
 
-                sitemap = new XDocument {
-                    Declaration = new XDeclaration("1.0", "utf-8", "yes")
-                };
+                var content = contentFilter.GetContent();
 
-                sitemap.Add(rootNode);
-
-                AddPagesToSitemap(rootNode, siteRoot);
+                sitemap = _generator.Generate(content);
 
                 _sitemapCache.Insert(sitemap);
             } else {
@@ -76,39 +77,6 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
             }
 
             return sitemap;
-        }
-
-        /// <summary>
-        ///     Generates the root of the xml sitemap
-        /// </summary>
-        /// <returns></returns>
-        private static XElement GenerateSitemapRoot() {
-            XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
-            XNamespace xhtml = "http://www.w3.org/1999/xhtml";
-
-            var root = new XElement("urlset",
-                new XAttribute("xmlns", ns),
-                new XAttribute(XNamespace.Xmlns + "xhtml", xhtml));
-
-            return root;
-        }
-
-        /// <summary>
-        ///     Adds the umbraco pages to the sitemap which aren't in the blacklist and have
-        ///     a template
-        /// </summary>
-        private static void AddPagesToSitemap(XElement root, IPublishedContent contentRoot) {
-            foreach (
-                var content in
-                    contentRoot.Descendants()
-                               .Where(d => !DocumentTypeBlacklist.Contains(d.DocumentTypeAlias))
-                               .Where(d => d.TemplateId > 0)) {
-                root.Add(new XElement("url", new XElement("loc", content.UrlWithDomain()),
-                    new XElement("lastmod", content.UpdateDate.ToString("yyyy-MM-ddTHH:mm:sszzz")),
-                    new XElement("changefreq", "weekly"),
-                    new XElement("priority", "0.5")
-                    ));
-            }
         }
 
         /// <summary>

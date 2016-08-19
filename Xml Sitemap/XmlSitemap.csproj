@@ -253,6 +253,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\IContentFilter.cs" />
+    <Compile Include="Filters\NoTemplateFilter.cs" />
+    <Compile Include="Filters\UmbracoFilter.cs" />
+    <Compile Include="Generators\IXmlSitemapGenerator.cs" />
+    <Compile Include="Generators\XmlSitemapGenerator.cs" />
+    <Compile Include="Models\IXmlConvertable.cs" />
+    <Compile Include="Models\Url.cs" />
+    <Compile Include="Models\UrlSet.cs" />
     <Compile Include="Optimization\ISitemapCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Optimization\HttpContextCache.cs" />
