@@ -4,6 +4,7 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
+using MarcelDigital.Umbraco.XmlSitemap.Optimization;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -24,6 +25,15 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
         /// </summary>
         private static readonly string[] DocumentTypeBlacklist = {"eventYear"};
 
+        private readonly ISitemapCache _sitemapCache;
+
+        /// <summary>
+        /// Constructor for the sitemap handler
+        /// </summary>
+        public XmlSitemapHandler() {
+            _sitemapCache = new HttpContextCache(HttpContext.Current);
+        }
+
         /// <summary>
         ///     Default method for the http request
         /// </summary>
@@ -43,13 +53,13 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
         ///     Generates the sitemap and inserts it in the response
         /// </summary>
         /// <param name="context"></param>
-        private static XDocument GenerateSitemapXml(HttpContext context) {
+        private XDocument GenerateSitemapXml(HttpContext context) {
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
             var siteRoot = umbracoHelper.TypedContentAtRoot().First();
             XDocument sitemap = null;
 
-            if (!XmlSitemapCache.IsSitemapInCache(context)) {
+            if (!_sitemapCache.IsInCache()) {
                 var rootNode = GenerateSitemapRoot();
 
                 sitemap = new XDocument {
@@ -60,9 +70,9 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
 
                 AddPagesToSitemap(rootNode, siteRoot);
 
-                XmlSitemapCache.PutSitemapInCache(context, sitemap);
+                _sitemapCache.Insert(sitemap);
             } else {
-                sitemap = XmlSitemapCache.GetSitemapFromCache(context);
+                sitemap = _sitemapCache.Retrieve();
             }
 
             return sitemap;

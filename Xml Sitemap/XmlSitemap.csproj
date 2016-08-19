@@ -253,8 +253,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Optimization\ISitemapCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlSitemapCache.cs" />
+    <Compile Include="Optimization\HttpContextCache.cs" />
     <Compile Include="XmlSitemapHandler.cs" />
   </ItemGroup>
   <ItemGroup>
