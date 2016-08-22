@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MarcelDigital.Umbraco.XmlSitemap</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <authors>Marcel Digital</authors>
     <owners>Marcel Digital</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
