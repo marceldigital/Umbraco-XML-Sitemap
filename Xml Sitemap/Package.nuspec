@@ -6,7 +6,7 @@
     <authors>Marcel Digital</authors>
     <owners>Marcel Digital</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Umbraco extention to output a Umbraco sitemap </description>
+    <description>Umbraco extension to output a Umbraco sitemap.</description>
     <releaseNotes>Initial Release.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>Umbraco Sitemap</tags>

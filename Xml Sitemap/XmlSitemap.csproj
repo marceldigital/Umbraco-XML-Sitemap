@@ -268,6 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Package.nuspec" />
     <None Include="packages.config" />
     <None Include="web.config.transform" />
   </ItemGroup>
