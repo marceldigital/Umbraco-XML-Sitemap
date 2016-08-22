@@ -1,0 +1,8 @@
+﻿<configuration>
+	<system.webServer>
+		<handlers>
+			<remove name="Sitemap" />
+			<add verb="*" path="sitemap.xml" name="Sitemap" type="MarcelDigital.Umbraco.XmlSitemap.XmlSitemapHandler, MarcelDigital.Umbraco.XmlSitemap" />
+		</handlers>
+	</system.webServer>
+</configuration>
