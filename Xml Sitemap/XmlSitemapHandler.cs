@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -8,6 +9,7 @@ using MarcelDigital.Umbraco.XmlSitemap.Filters;
 using MarcelDigital.Umbraco.XmlSitemap.Generators;
 using MarcelDigital.Umbraco.XmlSitemap.Optimization;
 using Umbraco.Core;
+using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace MarcelDigital.Umbraco.XmlSitemap {
@@ -61,13 +63,10 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
         private XDocument GenerateSitemapXml(HttpContext context) {
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
-            var siteRoot = umbracoHelper.TypedContentAtRoot().First();
             XDocument sitemap = null;
 
             if (!_sitemapCache.IsInCache()) {
-                var contentFilter = new NoTemplateFilter(umbracoHelper);
-
-                var content = contentFilter.GetContent();
+                var content = GetContent(umbracoHelper);
 
                 sitemap = _generator.Generate(content);
 
@@ -77,6 +76,16 @@ namespace MarcelDigital.Umbraco.XmlSitemap {
             }
 
             return sitemap;
+        }
+
+        /// <summary>
+        ///     Gets the Umbraco content to submit to the sitemap XML
+        /// </summary>
+        /// <param name="umbracoHelper"></param>
+        protected virtual IEnumerable<IPublishedContent> GetContent(UmbracoHelper umbracoHelper) {
+            var contentFilter = new NoTemplateFilter(umbracoHelper);
+
+            return contentFilter.GetContent();
         }
 
         /// <summary>
