@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
-using MarcelDigital.Umbraco.XmlSitemap.Filters;
-using MarcelDigital.Umbraco.XmlSitemap.Generators;
-using MarcelDigital.Umbraco.XmlSitemap.Optimization;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Filters;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace MarcelDigital.Umbraco.XmlSitemap {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
     /// <summary>
     ///     Generetes the Xml sitemap for the umbraco website.
     /// </summary>

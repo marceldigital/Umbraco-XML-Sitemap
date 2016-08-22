@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Models {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
     /// <summary>
     ///     Representation of the url set node of a XML sitemap.
     /// </summary>

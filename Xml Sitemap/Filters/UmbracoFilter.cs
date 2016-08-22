@@ -1,6 +1,6 @@
 ﻿using Umbraco.Web;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Filters {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Filters {
     internal abstract class UmbracoFilter {
         /// <summary>
         ///     The umbraco helper for the current session.

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Filters {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Filters {
     /// <summary>
     ///     Filters on the umbraco nodes by ones with no templates
     /// </summary>

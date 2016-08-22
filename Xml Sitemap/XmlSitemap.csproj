@@ -7,8 +7,8 @@
     <ProjectGuid>{4CEE392F-2D5F-40E7-B711-AFB4023E2B61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MarcelDigital.Umbraco.XmlSitemap</RootNamespace>
-    <AssemblyName>MarcelDigital.Umbraco.XmlSitemap</AssemblyName>
+    <RootNamespace>MarcelDigital.UmbracoExtensions.XmlSitemap</RootNamespace>
+    <AssemblyName>MarcelDigital.UmbracoExtensions.XmlSitemap</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

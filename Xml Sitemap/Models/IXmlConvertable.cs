@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Models {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
     internal interface IXmlConvertable {
         /// <summary>
         ///     Converts the object to an XML element

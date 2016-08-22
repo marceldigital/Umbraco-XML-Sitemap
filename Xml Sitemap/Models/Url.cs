@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Models {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
     internal class Url : IXmlConvertable {
         /// <summary>
         ///     Provides the full URL of the page or sitemap, including the protocol (e.g. http, https) and a trailing slash.

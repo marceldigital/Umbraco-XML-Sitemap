@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using Umbraco.Core.Models;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Generators {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Generators {
     /// <summary>
     ///     Interface for the generation of a Xml sitemap
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MarcelDigital.Umbraco.XmlSitemap.Generators;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Umbraco.Core.Models;

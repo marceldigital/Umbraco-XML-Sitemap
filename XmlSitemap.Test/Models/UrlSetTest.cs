@@ -1,5 +1,5 @@
 ﻿using System;
-using MarcelDigital.Umbraco.XmlSitemap.Models;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace XmlSitemap.Test.Models

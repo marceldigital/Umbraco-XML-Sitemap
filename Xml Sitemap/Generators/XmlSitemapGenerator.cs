@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using MarcelDigital.Umbraco.XmlSitemap.Models;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Models;
 using Umbraco.Core.Models;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Generators {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Generators {
     internal class XmlSitemapGenerator : IXmlSitemapGenerator {
         /// <summary>
         ///     Generates a valid xml sitemap from the supplied content.

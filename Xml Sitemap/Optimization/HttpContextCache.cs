@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Xml.Linq;
 
-namespace MarcelDigital.Umbraco.XmlSitemap.Optimization {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization {
     /// <summary>
     ///     Http context implementation of the cache.
     /// </summary>

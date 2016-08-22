@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>MarcelDigital.Umbraco.XmlSitemap</id>
-    <version>1.0.5</version>
+    <id>MarcelDigital.UmbracoExtensions.XmlSitemap</id>
+    <version>1.0.6</version>
     <authors>Marcel Digital</authors>
     <owners>Marcel Digital</owners>
+    <iconUrl>https://www.marceldigital.com/images/logo-dark-square.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Umbraco extension to output a Umbraco sitemap.</description>
+    <description>Umbraco extension to output an xml sitemap.</description>
     <releaseNotes>Initial Release.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>Umbraco Sitemap</tags>
