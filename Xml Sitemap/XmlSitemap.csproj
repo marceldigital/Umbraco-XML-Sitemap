@@ -270,7 +270,9 @@
     <None Include="app.config" />
     <None Include="Package.nuspec" />
     <None Include="packages.config" />
-    <None Include="web.config.transform" />
+    <None Include="web.config.transform">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
