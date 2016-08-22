@@ -14,4 +14,7 @@
       <dependency id="UmbracoCms.Core" version="7.0" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="Content\*" target="content" />
+  </files>
 </package>
