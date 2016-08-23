@@ -8,13 +8,10 @@ namespace XmlSitemap.Test.Models
 {
     [TestClass]
     public class UrlSetTest {
-        private TimeSpan _currentMachineOffset;
-        private string _xhtmlNamespace = "{http://www.w3.org/2000/xmlns/}xhtml";
+        private const string XhtmlNamespace = "{http://www.w3.org/2000/xmlns/}xhtml";
 
         [TestInitialize]
-        public void Setup() {
-            _currentMachineOffset = DateTimeOffset.Now.Offset;
-        }
+        public void Setup() {}
 
         [TestMethod]
         public void HasXmlnsAttribute() {
@@ -53,7 +50,7 @@ namespace XmlSitemap.Test.Models
 
             var xml = urlSet.ToXml();
 
-            Assert.IsTrue(xml.Attributes().Any(attr => attr.Name == _xhtmlNamespace), "xmlns:html attribute missing.");
+            Assert.IsTrue(xml.Attributes().Any(attr => attr.Name == XhtmlNamespace), "xmlns:html attribute missing.");
         }
 
         [TestMethod]
@@ -63,7 +60,7 @@ namespace XmlSitemap.Test.Models
 
             var xml = urlSet.ToXml();
 
-            Assert.AreEqual(xml.Attributes().First(attr => attr.Name == _xhtmlNamespace).Value, expected, "xmlns:html default value incorrect.");
+            Assert.AreEqual(xml.Attributes().First(attr => attr.Name == XhtmlNamespace).Value, expected, "xmlns:html default value incorrect.");
         }
 
         [TestMethod]
@@ -75,7 +72,7 @@ namespace XmlSitemap.Test.Models
 
             var xml = urlSet.ToXml();
 
-            Assert.AreEqual(xml.Attributes().First(attr => attr.Name == _xhtmlNamespace).Value, expected, "xmlns:html default value was not overriden.");
+            Assert.AreEqual(xml.Attributes().First(attr => attr.Name == XhtmlNamespace).Value, expected, "xmlns:html default value was not overriden.");
         }
 
         [TestMethod]
