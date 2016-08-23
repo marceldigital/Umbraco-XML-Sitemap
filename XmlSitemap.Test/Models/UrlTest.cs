@@ -7,16 +7,26 @@ namespace XmlSitemap.Test.Models
     [TestClass]
     public class UrlTest
     {
+        private TimeSpan _currentMachineOffset;
+
+        [TestInitialize]
+        public void Setup() {
+            _currentMachineOffset = DateTimeOffset.Now.Offset;
+        }
+
         /// <summary>
         /// Tests that the to XML converter works
         /// </summary>
         [TestMethod]
         public void TestToXml() {
-            const string expected = "<url>\r\n  <loc>http://www.google.com</loc>\r\n  <lastmod>2016-01-12T00:00:00-06:00</lastmod>\r\n  <changefreq>weekly</changefreq>\r\n  <priority>0.5</priority>\r\n</url>";
+            const string testUrl = "http://test.domain.com/something/";
+            var modified = new DateTimeOffset(new DateTime(2016, 1, 12), _currentMachineOffset).DateTime;
+            var expected =
+                $"<url>\r\n  <loc>{testUrl}</loc>\r\n  <lastmod>{modified.ToString("yyyy-MM-ddTHH:mm:sszzz")}</lastmod>\r\n  <changefreq>weekly</changefreq>\r\n  <priority>0.5</priority>\r\n</url>";
 
             var url = new Url {
-                Location = "http://www.google.com",
-                LastModified = new DateTimeOffset(new DateTime(2016, 1, 12), new TimeSpan(0)).DateTime
+                Location = testUrl,
+                LastModified = modified
             };
 
             var xml = url.ToXml();
