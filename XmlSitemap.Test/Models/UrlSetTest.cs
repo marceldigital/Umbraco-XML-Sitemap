@@ -79,8 +79,8 @@ namespace XmlSitemap.Test.Models
         public void HasChildren() {
             var urlSet = new UrlSet();
 
-            var url1 = new Url();
-            var url2 = new Url();
+            var url1 = new UmbracoContent();
+            var url2 = new UmbracoContent();
 
             urlSet.Urls.Add(url1);
             urlSet.Urls.Add(url2);

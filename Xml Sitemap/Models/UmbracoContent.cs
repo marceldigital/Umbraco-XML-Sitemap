@@ -4,7 +4,7 @@ using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
-    internal class Url : IXmlConvertable {
+    internal class UmbracoContent : ISitemapContent {
         /// <summary>
         ///     Provides the full URL of the page or sitemap, including the protocol (e.g. http, https) and a trailing slash.
         /// </summary>
@@ -28,19 +28,9 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
         /// <summary>
         ///     Default constructor for the url node.
         /// </summary>
-        public Url() {
+        public UmbracoContent() {
             ChangeFrequency = "weekly";
             Priority = 0.5;
-        }
-
-        /// <summary>
-        ///     Constructor that fills the properties using published
-        ///     Umbraco content.
-        /// </summary>
-        /// <param name="content"></param>
-        public Url(IPublishedContent content) : this() {
-            Location = content.UrlWithDomain();
-            LastModified = content.UpdateDate;
         }
 
         /// <summary>
@@ -53,6 +43,18 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
                 new XElement("changefreq", ChangeFrequency),
                 new XElement("priority", Priority.ToString("N1"))
                 );
+        }
+
+        /// <summary>
+        /// Parses a IPublishedContent node into a UmbracoContent
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static UmbracoContent Parse(IPublishedContent content) {
+            return new UmbracoContent {
+                Location = content.UrlWithDomain(),
+                LastModified = content.UpdateDate
+            };
         }
     }
 }

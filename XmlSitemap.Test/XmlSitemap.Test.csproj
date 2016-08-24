@@ -277,7 +277,7 @@
   <ItemGroup>
     <Compile Include="Generators\XmlSitemapGeneratorTest.cs" />
     <Compile Include="Models\UrlSetTest.cs" />
-    <Compile Include="Models\UrlTest.cs" />
+    <Compile Include="Models\UmbracoContentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

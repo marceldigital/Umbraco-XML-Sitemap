@@ -259,8 +259,9 @@
     <Compile Include="Filters\UmbracoFilter.cs" />
     <Compile Include="Generators\IXmlSitemapGenerator.cs" />
     <Compile Include="Generators\XmlSitemapGenerator.cs" />
+    <Compile Include="Models\ISitemapContent.cs" />
     <Compile Include="Models\IXmlConvertable.cs" />
-    <Compile Include="Models\Url.cs" />
+    <Compile Include="Models\UmbracoContent.cs" />
     <Compile Include="Models\UrlSet.cs" />
     <Compile Include="Optimization\ISitemapCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

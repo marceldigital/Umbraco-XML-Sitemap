@@ -19,7 +19,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
         /// <summary>
         ///     The child urls of the url set.
         /// </summary>
-        public IList<IXmlConvertable> Urls { get; set; }
+        public IList<ISitemapContent> Urls { get; set; }
 
         /// <summary>
         /// Default constructor for the url set.
@@ -27,7 +27,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
         public UrlSet() {
             XmlNamespace = "http://www.sitemaps.org/schemas/sitemap/0.9";
             XmlNamespaceXHtml = "http://www.w3.org/1999/xhtml";
-            Urls = new List<IXmlConvertable>();
+            Urls = new List<ISitemapContent>();
         }
 
         /// <summary>

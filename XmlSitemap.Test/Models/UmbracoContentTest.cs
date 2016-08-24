@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace XmlSitemap.Test.Models
 {
     [TestClass]
-    public class UrlTest
+    public class UmbracoContentTest
     {
         private TimeSpan _currentMachineOffset;
 
@@ -24,7 +24,7 @@ namespace XmlSitemap.Test.Models
             var expected =
                 $"<url>\r\n  <loc>{testUrl}</loc>\r\n  <lastmod>{modified.ToString("yyyy-MM-ddTHH:mm:sszzz")}</lastmod>\r\n  <changefreq>weekly</changefreq>\r\n  <priority>0.5</priority>\r\n</url>";
 
-            var url = new Url {
+            var url = new UmbracoContent {
                 Location = testUrl,
                 LastModified = modified
             };

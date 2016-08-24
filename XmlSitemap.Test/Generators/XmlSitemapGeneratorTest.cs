@@ -1,36 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Umbraco.Core.Models;
-using Umbraco.Web;
-using Umbraco.Web.Models;
 
 namespace XmlSitemap.Test.Generators
 {
     [TestClass]
-    public class XmlSitemapGeneratorTest
-    {
-        //[TestMethod]
-        public void TestGenerate() {
-            var expected = "";
-            var mockContent = new Mock<IPublishedContent>();
-            //mockContent.Setup(m => m.UrlWithDomain()).Returns("http://www.google.com");
-            mockContent.Setup(m => m.UpdateDate).Returns(new DateTimeOffset(new DateTime(2016, 1, 12), new TimeSpan(0)).DateTime);
+    public class XmlSitemapGeneratorTest {
+        private IList<ISitemapContent> _mockContent;
 
-            var mockContent2 = new Mock<IPublishedContent>();
-            //mockContent2.Setup(m => m.UrlWithDomain()).Returns("http://www.amazon.com");
-            mockContent2.Setup(m => m.UpdateDate).Returns(new DateTimeOffset(new DateTime(2016, 7, 8), new TimeSpan(0)).DateTime);
+        [TestInitialize]
+        public void Setup() {
+            var mockContent = new Mock<ISitemapContent>();
+            mockContent.Setup(m => m.ToXml()).Returns(new XElement("url"));
 
-            var list = new List<IPublishedContent>();
-            list.Add(mockContent.Object);
-            list.Add(mockContent2.Object);
+            var mockContent2 = new Mock<ISitemapContent>();
+            mockContent2.Setup(m => m.ToXml()).Returns(new XElement("url"));
 
+            _mockContent = new List<ISitemapContent> {
+                mockContent.Object,
+                mockContent2.Object
+            };
+        }
+
+        [TestMethod]
+        public void TestDeclaration() {
             var generator = new XmlSitemapGenerator();
-            var sitemap = generator.Generate(list);
+            var sitemap = generator.Generate(_mockContent);
 
-            Assert.AreEqual(expected, sitemap.ToString());
+            Assert.AreEqual("1.0", sitemap.Declaration.Version, "the sitemap version is incorrect.");
+            Assert.AreEqual("utf-8", sitemap.Declaration.Encoding, "the sitemap version is incorrect.");
+            Assert.AreEqual("yes", sitemap.Declaration.Standalone, "the sitemap should be standalone.");
+        }
+
+        [TestMethod]
+        public void TestContents() {
+            var generator = new XmlSitemapGenerator();
+            var sitemap = generator.Generate(_mockContent);
+
+            Assert.AreEqual("urlset", sitemap.Root.Name, "urlset is not the root element");
+            Assert.AreEqual(2, sitemap.Root.Elements().Count(), "the sitmap has an incorrect number of urls");
         }
     }
 }
