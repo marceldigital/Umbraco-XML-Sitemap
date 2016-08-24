@@ -7,18 +7,18 @@ using Umbraco.Core.Models;
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Generators {
     internal class XmlSitemapGenerator : IXmlSitemapGenerator {
         /// <summary>
-        /// The version of the XML, usually "1.0".
+        ///     The version of the XML, usually "1.0".
         /// </summary>
         private const string Version = "1.0";
 
         /// <summary>
-        /// The encoding for the XML document.
+        ///     The encoding for the XML document.
         /// </summary>
         private const string Encoding = "utf-8";
 
         /// <summary>
-        /// Specifies whether the XML is standalone or required external
-        /// dependencies to be resolved.
+        ///     Specifies whether the XML is standalone or required external
+        ///     dependencies to be resolved.
         /// </summary>
         private const string Standalone = "yes";
 

@@ -46,7 +46,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
         }
 
         /// <summary>
-        /// Parses a IPublishedContent node into a UmbracoContent
+        ///     Parses a IPublishedContent node into a UmbracoContent
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>

@@ -6,8 +6,7 @@ using MarcelDigital.UmbracoExtensions.XmlSitemap.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace XmlSitemap.Test.Generators
-{
+namespace XmlSitemap.Test.Generators {
     [TestClass]
     public class XmlSitemapGeneratorTest {
         private IList<ISitemapContent> _mockContent;
