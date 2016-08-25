@@ -1,7 +1,7 @@
 using System.Xml.Linq;
 
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization {
-    internal interface ISitemapCache {
+    public interface ISitemapCache {
         /// <summary>
         ///     Checks if the sitemap is in the cache
         /// </summary>

@@ -6,7 +6,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Generators {
     /// <summary>
     ///     Interface for the generation of a Xml sitemap
     /// </summary>
-    internal interface IXmlSitemapGenerator {
+    public interface IXmlSitemapGenerator {
         /// <summary>
         ///     Creates an xml sitemap from the content
         /// </summary>

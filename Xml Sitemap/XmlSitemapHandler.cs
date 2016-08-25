@@ -33,24 +33,53 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
         private readonly IXmlSitemapGenerator _generator;
 
         /// <summary>
+        ///     The filter to use on the Umbraco content.
+        /// </summary>
+        private readonly IContentFilter _filter;
+
+        /// <summary>
         ///     Constructor for the sitemap handler
         /// </summary>
         public XmlSitemapHandler() {
-            _sitemapCache = new HttpContextCache(HttpContext.Current);
-            _generator = new XmlSitemapGenerator();
-        }
-
-        /// <summary>
-        ///     Default method for the http request
-        /// </summary>
-        /// <param name="context"></param>
-        public void ProcessRequest(HttpContext context) {
             UmbracoContext.EnsureContext(
                 new HttpContextWrapper(HttpContext.Current),
                 ApplicationContext.Current,
                 true);
 
-            var sitemap = GenerateSitemapXml(context);
+            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+
+            _sitemapCache = new HttpContextCache(HttpContext.Current);
+            _generator = new XmlSitemapGenerator();
+            _filter = new NoTemplateFilter(umbracoHelper);
+        }
+
+        /// <summary>
+        /// Constructor to inject dependanices into the handler
+        /// </summary>
+        /// <param name="cacheStrategy">Cache strategy of the handler for the sitemap.</param>
+        /// <param name="generator">Generator for the sitemap.</param>
+        /// <param name="filter">Filter for the umbraco content.</param>
+        public XmlSitemapHandler(ISitemapCache cacheStrategy, IXmlSitemapGenerator generator, IContentFilter filter) {
+            _sitemapCache = cacheStrategy;
+            _generator = generator;
+            _filter = filter;
+        }
+
+        /// <summary>
+        ///     Default method for the http request
+        /// </summary>
+        /// <param name="context">Current http context</param>
+        public void ProcessRequest(HttpContext context) {
+            HttpContextBase wrapper = new HttpContextWrapper(context);
+            ProcessRequest(wrapper);
+        }
+
+        /// <summary>
+        /// Alternate method for the http request
+        /// </summary>
+        /// <param name="context">Current http context</param>
+        public void ProcessRequest(HttpContextBase context) {
+            var sitemap = GenerateSitemapXml();
 
             InsertSitemapIntoResponse(context, sitemap);
         }
@@ -58,14 +87,11 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
         /// <summary>
         ///     Generates the sitemap and inserts it in the response
         /// </summary>
-        /// <param name="context"></param>
-        private XDocument GenerateSitemapXml(HttpContext context) {
-            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-
-            XDocument sitemap = null;
+        private XDocument GenerateSitemapXml() {
+            XDocument sitemap;
 
             if (!_sitemapCache.IsInCache()) {
-                var content = GetContent(umbracoHelper);
+                var content = GetContent();
 
                 sitemap = _generator.Generate(content);
 
@@ -80,19 +106,15 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
         /// <summary>
         ///     Gets the Umbraco content to submit to the sitemap XML
         /// </summary>
-        /// <param name="umbracoHelper"></param>
-        protected virtual IEnumerable<IPublishedContent> GetContent(UmbracoHelper umbracoHelper) {
-            var contentFilter = new NoTemplateFilter(umbracoHelper);
-
-            return contentFilter.GetContent();
-        }
+        protected virtual IEnumerable<IPublishedContent> GetContent()
+            => _filter.GetContent();
 
         /// <summary>
         ///     Puts the sitemap into the http response
         /// </summary>
         /// <param name="context"></param>
         /// <param name="sitemap"></param>
-        private static void InsertSitemapIntoResponse(HttpContext context, XDocument sitemap) {
+        private static void InsertSitemapIntoResponse(HttpContextBase context, XDocument sitemap) {
             var response = context.Response;
             response.Clear();
             response.ContentType = "text/xml";

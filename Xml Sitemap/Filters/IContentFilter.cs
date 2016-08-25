@@ -2,7 +2,7 @@
 using Umbraco.Core.Models;
 
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Filters {
-    internal interface IContentFilter {
+    public interface IContentFilter {
         /// <summary>
         ///     Gets the content that should be used in the XML sitemap
         /// </summary>
