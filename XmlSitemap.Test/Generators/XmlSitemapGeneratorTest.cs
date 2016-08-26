@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
@@ -42,6 +44,14 @@ namespace XmlSitemap.Test.Generators {
 
             Assert.AreEqual("urlset", sitemap.Root.Name, "urlset is not the root element");
             Assert.AreEqual(2, sitemap.Root.Elements().Count(), "the sitmap has an incorrect number of urls");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentNullException), "Null content was allowed.")]
+        public void TestNullContent() {
+            IEnumerable<ISitemapContent> nullContent = null;
+            var generator = new XmlSitemapGenerator();
+            
+            generator.Generate(nullContent);
         }
     }
 }

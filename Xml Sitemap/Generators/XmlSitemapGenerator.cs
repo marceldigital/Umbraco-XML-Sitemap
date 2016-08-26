@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Models;
@@ -28,6 +29,8 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Generators {
         /// <param name="content">Content to be added to the sitemap.</param>
         /// <returns>An XML Sitemap.</returns>
         public XDocument Generate(IEnumerable<ISitemapContent> content) {
+            if (content == null) throw new ArgumentNullException(nameof(content));
+
             var urlSet = new UrlSet {
                 Urls = content.ToList()
             };
