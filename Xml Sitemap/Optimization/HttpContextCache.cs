@@ -19,6 +19,13 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization {
         private readonly HttpContext _httpContext;
 
         /// <summary>
+        ///     Default constructor for the cache.
+        /// </summary>
+        public HttpContextCache() {
+            _httpContext = HttpContext.Current;
+        }
+
+        /// <summary>
         ///     Constructor for the cache.
         /// </summary>
         /// <param name="httpContext">The current http context.</param>
@@ -31,7 +38,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization {
         /// </summary>
         /// <returns></returns>
         public bool IsInCache()
-            => _httpContext.Cache[CacheKey] != null || _httpContext.Cache[CacheKey] is XDocument;
+            => (_httpContext.Cache[CacheKey] != null) || _httpContext.Cache[CacheKey] is XDocument;
 
         /// <summary>
         ///     Gets the sitemap from the cache

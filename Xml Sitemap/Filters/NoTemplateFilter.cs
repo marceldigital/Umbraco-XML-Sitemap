@@ -8,12 +8,13 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Filters {
     ///     Filters on the umbraco nodes by ones with no templates
     /// </summary>
     internal class NoTemplateFilter : UmbracoFilter, IContentFilter {
+        public NoTemplateFilter() {}
         public NoTemplateFilter(UmbracoHelper umbracoHelper) : base(umbracoHelper) {}
 
         public IEnumerable<IPublishedContent> GetContent() {
             var siteRoot = UmbracoHelper.TypedContentAtRoot().First();
 
-            return siteRoot.Descendants().Where(d => d.TemplateId > 0);
+            return siteRoot.DescendantsOrSelf().Where(d => d.TemplateId > 0);
         }
     }
 }

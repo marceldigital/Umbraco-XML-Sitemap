@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Filters;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization;
 using Umbraco.Core;
-using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
@@ -46,15 +45,15 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
                 ApplicationContext.Current,
                 true);
 
-            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+            var factory = new DependencyFactory();
 
-            _sitemapCache = new HttpContextCache(HttpContext.Current);
+            _sitemapCache = factory.CreateSitemapCache();
             _generator = new XmlSitemapGenerator();
-            _filter = new NoTemplateFilter(umbracoHelper);
+            _filter = factory.CreateFilter();
         }
 
         /// <summary>
-        /// Constructor to inject dependanices into the handler
+        ///     Constructor to inject dependencies into the handler
         /// </summary>
         /// <param name="cacheStrategy">Cache strategy of the handler for the sitemap.</param>
         /// <param name="generator">Generator for the sitemap.</param>
@@ -75,7 +74,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
         }
 
         /// <summary>
-        /// Alternate method for the http request
+        ///     Alternate method for the http request
         /// </summary>
         /// <param name="context">Current http context</param>
         public void ProcessRequest(HttpContextBase context) {
@@ -91,7 +90,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
             XDocument sitemap;
 
             if (!_sitemapCache.IsInCache()) {
-                var content = GetContent();
+                var content = _filter.GetContent();
 
                 sitemap = _generator.Generate(content);
 
@@ -102,12 +101,6 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
 
             return sitemap;
         }
-
-        /// <summary>
-        ///     Gets the Umbraco content to submit to the sitemap XML
-        /// </summary>
-        protected virtual IEnumerable<IPublishedContent> GetContent()
-            => _filter.GetContent();
 
         /// <summary>
         ///     Puts the sitemap into the http response
