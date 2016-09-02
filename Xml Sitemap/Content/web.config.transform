@@ -4,7 +4,7 @@
   </configSections>
   <umbracoXmlSitemap
     cache="MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization.HttpContextCache, MarcelDigital.UmbracoExtensions.XmlSitemap"
-    filter="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.NoTemplateFilter, MarcelDigital.UmbracoExtensions.XmlSitemap"/>
+    filter="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.NoFilter, MarcelDigital.UmbracoExtensions.XmlSitemap"/>
 	<system.webServer>
 		<handlers>
 			<remove name="Sitemap" />

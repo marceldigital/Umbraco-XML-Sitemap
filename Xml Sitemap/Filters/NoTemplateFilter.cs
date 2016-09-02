@@ -7,7 +7,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Filters {
     /// <summary>
     ///     Filters on the umbraco nodes by ones with no templates
     /// </summary>
-    internal class NoTemplateFilter : UmbracoFilter, IContentFilter {
+    public class NoTemplateFilter : UmbracoFilter, IContentFilter {
         public NoTemplateFilter() {}
         public NoTemplateFilter(UmbracoHelper umbracoHelper) : base(umbracoHelper) {}
 

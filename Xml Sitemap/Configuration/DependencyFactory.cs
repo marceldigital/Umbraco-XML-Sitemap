@@ -15,7 +15,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
         ///     Default constructor
         /// </summary>
         public DependencyFactory() {
-            _config = (UmbracoXmlSitemapSection) ConfigurationManager.GetSection("umbracoXmlSitemap");
+            _config = (UmbracoXmlSitemapSection) ConfigurationManager.GetSection(Constants.ConfigurationSectionName);
         }
 
         /// <summary>

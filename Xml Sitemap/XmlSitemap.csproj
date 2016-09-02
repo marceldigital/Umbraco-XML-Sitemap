@@ -255,12 +255,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Constants.cs" />
     <Compile Include="Configuration\DependencyFactory.cs" />
+    <Compile Include="Configuration\DocumentTypeElement.cs" />
+    <Compile Include="Configuration\DocumentTypesCollection.cs" />
     <Compile Include="Configuration\IUmbracoXmlSitemapSection.cs" />
     <Compile Include="Configuration\UmbracoXmlSitemapSection.cs" />
+    <Compile Include="Filters\BlacklistFilter.cs" />
     <Compile Include="Filters\IContentFilter.cs" />
+    <Compile Include="Filters\NoFilter.cs" />
     <Compile Include="Filters\NoTemplateFilter.cs" />
     <Compile Include="Filters\UmbracoFilter.cs" />
+    <Compile Include="Filters\UmbracoListFilter.cs" />
+    <Compile Include="Filters\WhitelistFilter.cs" />
     <Compile Include="Generators\IXmlSitemapGenerator.cs" />
     <Compile Include="Generators\XmlSitemapGenerator.cs" />
     <Compile Include="Models\ISitemapContent.cs" />

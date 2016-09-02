@@ -6,6 +6,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
     public class UmbracoXmlSitemapSection : ConfigurationSection, IUmbracoXmlSitemapSection {
         private const string CacheKey = "cache";
         private const string FilterKey = "filter";
+        private const string DocumentTypesKey = "documentTypes";
 
         /// <summary>
         ///     The class to use for caching the sitemap
@@ -25,6 +26,19 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
         public Type Filter {
             get { return this[FilterKey] as Type; }
             set { this[FilterKey] = value; }
+        }
+
+        /// <summary>
+        ///     List of document types for filters that take a list
+        /// </summary>
+        [ConfigurationProperty("documentTypes", IsDefaultCollection = false, IsRequired = false)]
+        [ConfigurationCollection(typeof(DocumentTypesCollection), 
+            AddItemName = "add",
+            ClearItemsName = "clear",
+            RemoveItemName = "remove")]
+        public DocumentTypesCollection DocumentTypes {
+            get { return this[DocumentTypesKey] as DocumentTypesCollection; }
+            set { this[DocumentTypesKey] = value; }
         }
     }
 }

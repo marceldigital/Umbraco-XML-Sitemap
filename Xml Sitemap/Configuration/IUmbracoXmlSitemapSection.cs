@@ -11,5 +11,10 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
         ///     The filter to use to gather the umbraco content
         /// </summary>
         Type Filter { get; set; }
+
+        /// <summary>
+        ///     List of document types for filters that take a list
+        /// </summary>
+        DocumentTypesCollection DocumentTypes { get; set; }
     }
 }
