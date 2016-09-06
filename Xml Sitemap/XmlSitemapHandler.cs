@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Web;
 using System.Xml;
@@ -8,6 +9,7 @@ using MarcelDigital.UmbracoExtensions.XmlSitemap.Filters;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization;
 using Umbraco.Core;
+using Umbraco.Core.Logging;
 using Umbraco.Web;
 
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
@@ -78,9 +80,16 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
         /// </summary>
         /// <param name="context">Current http context</param>
         public void ProcessRequest(HttpContextBase context) {
-            var sitemap = GenerateSitemapXml();
+            LogHelper.Debug<XmlSitemapHandler>("Processing xml sitemap request.");
+            try {
+                var sitemap = GenerateSitemapXml();
 
-            InsertSitemapIntoResponse(context, sitemap);
+                InsertSitemapIntoResponse(context, sitemap);
+            } catch (Exception e) {
+                LogHelper.Error<XmlSitemapHandler>($"An error occured returning the sitemap: {e.Message}", e);
+                throw;
+            }
+            LogHelper.Debug<XmlSitemapHandler>("Completed xml sitemap request.");
         }
 
         /// <summary>
@@ -90,12 +99,14 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
             XDocument sitemap;
 
             if (!_sitemapCache.IsInCache()) {
+                LogHelper.Debug<XmlSitemapHandler>("Xml sitemap found is not in the cache, generating...");
                 var content = _filter.GetContent();
 
                 sitemap = _generator.Generate(content);
 
                 _sitemapCache.Insert(sitemap);
             } else {
+                LogHelper.Debug<XmlSitemapHandler>("Xml sitemap is in the cache, retrieving...");
                 sitemap = _sitemapCache.Retrieve();
             }
 
