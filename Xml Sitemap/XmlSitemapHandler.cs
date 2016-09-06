@@ -127,7 +127,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
                 var xmlWriter = new XmlTextWriter(streamWriter);
                 sitemap.WriteTo(xmlWriter);
             }
-            response.End();
+            response.Flush();
         }
     }
 }
