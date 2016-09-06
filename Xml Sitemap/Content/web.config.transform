@@ -3,7 +3,6 @@
     <section name="umbracoXmlSitemap" type="MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.UmbracoXmlSitemapSection" requirePermission="false" />
   </configSections>
   <umbracoXmlSitemap
-    cache="MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization.HttpContextCache, MarcelDigital.UmbracoExtensions.XmlSitemap"
     filter="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.NoFilter, MarcelDigital.UmbracoExtensions.XmlSitemap"/>
 	<system.webServer>
 		<handlers>

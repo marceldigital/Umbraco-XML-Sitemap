@@ -12,7 +12,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
         ///     The class to use for caching the sitemap
         /// </summary>
         [TypeConverter(typeof(TypeNameConverter))]
-        [ConfigurationProperty("cache", IsRequired = true)]
+        [ConfigurationProperty("cache", IsRequired = false , DefaultValue = Constants.DefaultCachingStrategy)]
         public Type Cache {
             get { return this[CacheKey] as Type; }
             set { this[CacheKey] = value; }
