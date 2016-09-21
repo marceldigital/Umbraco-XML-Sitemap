@@ -255,21 +255,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Collections\FiltersCollection.cs" />
+    <Compile Include="Configuration\Elements\FilterElement.cs" />
+    <Compile Include="Configuration\IDependencyFactory.cs" />
+    <Compile Include="Configuration\WebConfigDependencyFactory.cs" />
+    <Compile Include="Engines\IContentEngine.cs" />
+    <Compile Include="Engines\UmbracoEngine.cs" />
     <Compile Include="Configuration\Constants.cs" />
-    <Compile Include="Configuration\DependencyFactory.cs" />
-    <Compile Include="Configuration\DocumentTypeElement.cs" />
-    <Compile Include="Configuration\DocumentTypesCollection.cs" />
-    <Compile Include="Configuration\IUmbracoXmlSitemapSection.cs" />
-    <Compile Include="Configuration\UmbracoXmlSitemapSection.cs" />
-    <Compile Include="Filters\BlacklistFilter.cs" />
-    <Compile Include="Filters\IContentFilter.cs" />
-    <Compile Include="Filters\NoFilter.cs" />
+    <Compile Include="Configuration\Elements\DocumentTypeElement.cs" />
+    <Compile Include="Configuration\Collections\DocumentTypesCollection.cs" />
+    <Compile Include="Configuration\Sections\IUmbracoXmlSitemapSection.cs" />
+    <Compile Include="Configuration\Sections\UmbracoXmlSitemapSection.cs" />
+    <Compile Include="Filters\DocumentTypeBlacklistFilter.cs" />
+    <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\NoTemplateFilter.cs" />
-    <Compile Include="Filters\UmbracoFilter.cs" />
-    <Compile Include="Filters\UmbracoListFilter.cs" />
-    <Compile Include="Filters\WhitelistFilter.cs" />
+    <Compile Include="Filters\DocumentTypeListFilter.cs" />
+    <Compile Include="Filters\DocumentTypeWhitelistFilter.cs" />
     <Compile Include="Generators\IXmlSitemapGenerator.cs" />
     <Compile Include="Generators\XmlSitemapGenerator.cs" />
+    <Compile Include="Initializers\AllRootInitializer.cs" />
+    <Compile Include="Initializers\FirstRootInitializer.cs" />
+    <Compile Include="Initializers\IInitializer.cs" />
+    <Compile Include="Initializers\BaseUmbracoInitializer.cs" />
     <Compile Include="Models\ISitemapContent.cs" />
     <Compile Include="Models\IXmlConvertable.cs" />
     <Compile Include="Models\UmbracoContent.cs" />
@@ -283,12 +290,15 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Content\Conf\xmlSitemap.config.transform" />
     <None Include="Package.nuspec" />
     <None Include="packages.config" />
     <None Include="Content\web.config.transform">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

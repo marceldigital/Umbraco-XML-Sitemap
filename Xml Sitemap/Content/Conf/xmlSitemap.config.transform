@@ -1,0 +1,5 @@
+﻿<umbracoXmlSitemap>
+  <filters>
+    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.NoTemplateFilter, MarcelDigital.UmbracoExtensions.XmlSitemap" />
+  </filters>
+</umbracoXmlSitemap>

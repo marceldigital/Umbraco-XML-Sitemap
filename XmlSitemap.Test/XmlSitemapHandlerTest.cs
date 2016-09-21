@@ -3,6 +3,8 @@ using System.IO;
 using System.Web;
 using System.Xml.Linq;
 using MarcelDigital.UmbracoExtensions.XmlSitemap;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Engines;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Filters;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization;
@@ -14,9 +16,10 @@ namespace XmlSitemap.Test
 {
     [TestClass]
     public class XmlSitemapHandlerTest {
+        private Mock<IDependencyFactory> _mockDependencyFactory;
         private Mock<ISitemapCache> _mockCache;
         private Mock<IXmlSitemapGenerator> _mockGenerator;
-        private Mock<IContentFilter> _mockFilter;
+        private Mock<IContentEngine> _mockEngine;
         private MemoryStream _memoryStream;
         private Mock<HttpContextBase> _httpContext;
         private XDocument _sitemap;
@@ -26,7 +29,12 @@ namespace XmlSitemap.Test
         public void Setup() {
             _mockCache = new Mock<ISitemapCache>();
             _mockGenerator = new Mock<IXmlSitemapGenerator>();
-            _mockFilter = new Mock<IContentFilter>();
+            _mockEngine = new Mock<IContentEngine>();
+
+            _mockDependencyFactory = new Mock<IDependencyFactory>();
+            _mockDependencyFactory.Setup(m => m.CreateCache()).Returns(_mockCache.Object);
+            _mockDependencyFactory.Setup(m => m.CreateEngine()).Returns(_mockEngine.Object);
+            _mockDependencyFactory.Setup(m => m.CreateGenerator()).Returns(_mockGenerator.Object);
 
             _memoryStream = new MemoryStream();
             _httpContext = new Mock<HttpContextBase>();
@@ -49,7 +57,7 @@ namespace XmlSitemap.Test
             _mockCache.Setup(m => m.IsInCache()).Returns(true);
             _mockCache.Setup(m => m.Retrieve()).Returns(_sitemap);
             
-            var handler = new XmlSitemapHandler(_mockCache.Object, _mockGenerator.Object, _mockFilter.Object);
+            var handler = new XmlSitemapHandler(_mockDependencyFactory.Object);
 
             handler.ProcessRequest(_httpContext.Object);
 
@@ -59,7 +67,7 @@ namespace XmlSitemap.Test
             _mockCache.Verify(m => m.Insert(It.IsAny<XDocument>()), Times.Never);
 
             // Validate the filter was never called
-            _mockFilter.Verify(m => m.GetContent(), Times.Never);
+            _mockEngine.Verify(m => m.Run(), Times.Never);
 
             // Validate generate wasnt called
             _mockGenerator.Verify(m => m.Generate(It.IsAny<IEnumerable<IPublishedContent>>()), Times.Never);
@@ -68,10 +76,10 @@ namespace XmlSitemap.Test
         [TestMethod]
         public void TestProcessRequestOutOfCache() {
             _mockCache.Setup(m => m.IsInCache()).Returns(false);
-            _mockFilter.Setup(m => m.GetContent()).Returns(new List<IPublishedContent>());
+            _mockEngine.Setup(m => m.Run()).Returns(new List<IPublishedContent>());
             _mockGenerator.Setup(m => m.Generate(It.IsAny<IEnumerable<IPublishedContent>>())).Returns(_sitemap);
 
-            var handler = new XmlSitemapHandler(_mockCache.Object, _mockGenerator.Object, _mockFilter.Object);
+            var handler = new XmlSitemapHandler(_mockDependencyFactory.Object);
 
             handler.ProcessRequest(_httpContext.Object);
 
@@ -81,7 +89,7 @@ namespace XmlSitemap.Test
             _mockCache.Verify(m => m.Insert(It.IsAny<XDocument>()), Times.Once);
 
             // Validate the filter was never called
-            _mockFilter.Verify(m => m.GetContent(), Times.Once);
+            _mockEngine.Verify(m => m.Run(), Times.Once);
 
             // Validate generate wasnt called
             _mockGenerator.Verify(m => m.Generate(It.IsAny<IEnumerable<IPublishedContent>>()), Times.Once);

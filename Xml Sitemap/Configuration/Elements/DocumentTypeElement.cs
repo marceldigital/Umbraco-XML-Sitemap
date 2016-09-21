@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.Elements {
     /// <summary>
     ///     Element to represent a document type in document list
     /// </summary>

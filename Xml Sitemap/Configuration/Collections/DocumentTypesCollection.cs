@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.Elements;
 
-namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
+namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.Collections {
     /// <summary>
     ///     Configuration element collection to hold the list of document type
     ///     elements

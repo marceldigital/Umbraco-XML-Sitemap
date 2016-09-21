@@ -277,7 +277,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Configuration\DependencyFactoryTest.cs" />
+    <Compile Include="Configuration\WebConfigDependencyFactoryTest.cs" />
+    <Compile Include="Engines\UmbracoEngineTest.cs" />
+    <Compile Include="Filters\NoTemplateFilterTest.cs" />
+    <Compile Include="Filters\DocumentTypeBlacklistFilterTest.cs" />
+    <Compile Include="Filters\DocumentTypeWhitelistFilterTest.cs" />
     <Compile Include="Generators\XmlSitemapGeneratorTest.cs" />
     <Compile Include="Models\UrlSetTest.cs" />
     <Compile Include="Models\UmbracoContentTest.cs" />

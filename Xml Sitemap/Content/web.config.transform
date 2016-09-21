@@ -1,9 +1,8 @@
 ﻿<configuration>
   <configSections>
-    <section name="umbracoXmlSitemap" type="MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.UmbracoXmlSitemapSection" requirePermission="false" />
+    <section name="umbracoXmlSitemap" type="MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.Sections.UmbracoXmlSitemapSection" requirePermission="false" />
   </configSections>
-  <umbracoXmlSitemap
-    filter="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.NoFilter, MarcelDigital.UmbracoExtensions.XmlSitemap"/>
+  <umbracoXmlSitemap configSource="config\xmlSitemap.config"/>
 	<system.webServer>
 		<handlers>
 			<remove name="Sitemap" />

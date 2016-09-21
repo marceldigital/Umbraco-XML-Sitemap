@@ -5,7 +5,7 @@ using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration;
-using MarcelDigital.UmbracoExtensions.XmlSitemap.Filters;
+using MarcelDigital.UmbracoExtensions.XmlSitemap.Engines;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Generators;
 using MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization;
 using Umbraco.Core;
@@ -34,9 +34,9 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
         private readonly IXmlSitemapGenerator _generator;
 
         /// <summary>
-        ///     The filter to use on the Umbraco content.
+        ///     The engine to use to get the content.
         /// </summary>
-        private readonly IContentFilter _filter;
+        private readonly IContentEngine _contentEngine;
 
         /// <summary>
         ///     Constructor for the sitemap handler
@@ -47,23 +47,20 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
                 ApplicationContext.Current,
                 true);
 
-            var factory = new DependencyFactory();
+            var factory = new WebConfigDependencyFactory();
 
-            _sitemapCache = factory.CreateSitemapCache();
-            _generator = new XmlSitemapGenerator();
-            _filter = factory.CreateFilter();
+            _sitemapCache = factory.CreateCache();
+            _generator = factory.CreateGenerator();
+            _contentEngine = factory.CreateEngine();
         }
 
         /// <summary>
         ///     Constructor to inject dependencies into the handler
         /// </summary>
-        /// <param name="cacheStrategy">Cache strategy of the handler for the sitemap.</param>
-        /// <param name="generator">Generator for the sitemap.</param>
-        /// <param name="filter">Filter for the umbraco content.</param>
-        public XmlSitemapHandler(ISitemapCache cacheStrategy, IXmlSitemapGenerator generator, IContentFilter filter) {
-            _sitemapCache = cacheStrategy;
-            _generator = generator;
-            _filter = filter;
+        public XmlSitemapHandler(IDependencyFactory dependencyFactory) {
+            _sitemapCache = dependencyFactory.CreateCache();
+            _generator = dependencyFactory.CreateGenerator();
+            _contentEngine = dependencyFactory.CreateEngine();
         }
 
         /// <summary>
@@ -100,7 +97,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
 
             if (!_sitemapCache.IsInCache()) {
                 LogHelper.Debug<XmlSitemapHandler>("Xml sitemap found is not in the cache, generating...");
-                var content = _filter.GetContent();
+                var content = _contentEngine.Run();
 
                 sitemap = _generator.Generate(content);
 
