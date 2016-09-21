@@ -290,7 +290,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Content\Conf\xmlSitemap.config.transform" />
+    <None Include="Content\Conf\xmlSitemap.config" />
     <None Include="Package.nuspec" />
     <None Include="packages.config" />
     <None Include="Content\web.config.transform">
