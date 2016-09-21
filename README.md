@@ -15,7 +15,7 @@ To configure this filter, use the following class in the `web.conf` of the websi
 </umbracoXmlSitemap>
 ```
 
-### Whitelist Filter
+### Document Type Whitelist Filter
 This filter will add all the Umbraco nodes that have a matching document type alias in the list of document type aliases provided
 in the sitemap configuration. 
 
@@ -23,7 +23,7 @@ To configure this filter, use the following class in the `web.conf` of the websi
 ```xml
 <umbracoXmlSitemap>
   <filters>
-    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.WhitelistFilter, MarcelDigital.UmbracoExtensions.XmlSitemap">
+    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.DocumentTypeWhitelistFilter, MarcelDigital.UmbracoExtensions.XmlSitemap">
         <documentTypes>
             <add alias="DocumentTypeAlias1" />
             <add alias="DocumentTypeAlias2" />
@@ -33,7 +33,7 @@ To configure this filter, use the following class in the `web.conf` of the websi
 </umbracoXmlSitemap>
 ```
 
-### Blacklist Filter
+### Document Type Blacklist Filter
 This filter will remove all the Umbraco nodes that have a matching document type alias in the list of document type aliases provided
 in the sitemap configuration. 
 
@@ -41,7 +41,7 @@ To configure this filter, use the following class in the `web.conf` of the websi
 ```xml
 <umbracoXmlSitemap>
   <filters>
-    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.BlacklistFilter, MarcelDigital.UmbracoExtensions.XmlSitemap">
+    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.DocumentTypeBlacklistFilter, MarcelDigital.UmbracoExtensions.XmlSitemap">
         <documentTypes>
             <add alias="DocumentTypeAlias1" />
             <add alias="DocumentTypeAlias2" />
@@ -59,7 +59,7 @@ For example, use the following configuration to both remove content that has no 
 <umbracoXmlSitemap>
   <filters>
     <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.NoTemplateFilter, MarcelDigital.UmbracoExtensions.XmlSitemap" />
-    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.BlacklistFilter, MarcelDigital.UmbracoExtensions.XmlSitemap">
+    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.DocumentTypeBlacklistFilter, MarcelDigital.UmbracoExtensions.XmlSitemap">
         <documentTypes>
             <add alias="BadAlias" />
         </documentTypes>
