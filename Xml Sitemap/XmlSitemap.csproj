@@ -256,7 +256,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Collections\FiltersCollection.cs" />
+    <Compile Include="Configuration\Collections\PropertiesCollection.cs" />
+    <Compile Include="Configuration\Converters\FilterOperationConverter.cs" />
     <Compile Include="Configuration\Elements\FilterElement.cs" />
+    <Compile Include="Configuration\Elements\PropertyElement.cs" />
+    <Compile Include="Configuration\Enums\FilterOperator.cs" />
     <Compile Include="Configuration\IDependencyFactory.cs" />
     <Compile Include="Configuration\WebConfigDependencyFactory.cs" />
     <Compile Include="Engines\IContentEngine.cs" />
@@ -271,6 +275,7 @@
     <Compile Include="Filters\NoTemplateFilter.cs" />
     <Compile Include="Filters\DocumentTypeListFilter.cs" />
     <Compile Include="Filters\DocumentTypeWhitelistFilter.cs" />
+    <Compile Include="Filters\PropertiesFilter.cs" />
     <Compile Include="Generators\IXmlSitemapGenerator.cs" />
     <Compile Include="Generators\XmlSitemapGenerator.cs" />
     <Compile Include="Initializers\AllRootInitializer.cs" />

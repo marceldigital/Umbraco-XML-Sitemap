@@ -98,6 +98,9 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration {
                 if (filterType.IsSubclassOf(typeof(DocumentTypeListFilter))) {
                     var documentTypeList = CreateDocumentTypeList(filterElement);
                     filter = Activator.CreateInstance(filterType, documentTypeList) as IFilter;
+                } else if (filterType == typeof(PropertiesFilter)) {
+                    var propertyElements = filterElement.PropertiesList.OfType<PropertyElement>().ToList();
+                    filter = Activator.CreateInstance(filterType, propertyElements) as IFilter;
                 } else {
                     filter = Activator.CreateInstance(filterType) as IFilter;
                 }

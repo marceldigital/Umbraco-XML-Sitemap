@@ -8,6 +8,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.Elements
     public class FilterElement : ConfigurationElement {
         private const string TypeKey = "type";
         private const string DocumentTypesKey = "documentTypes";
+        private const string PropertiesKey = "properties";
 
         /// <summary>
         ///     Type of the Filter
@@ -30,6 +31,19 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Configuration.Elements
         public DocumentTypesCollection DocumentTypes {
             get { return this[DocumentTypesKey] as DocumentTypesCollection; }
             set { this[DocumentTypesKey] = value; }
+        }
+
+        /// <summary>
+        ///     List of document types for filters that take a list
+        /// </summary>
+        [ConfigurationProperty(PropertiesKey, IsDefaultCollection = false, IsRequired = false)]
+        [ConfigurationCollection(typeof(PropertiesCollection),
+            AddItemName = "property",
+            ClearItemsName = "clear",
+            RemoveItemName = "remove")]
+        public PropertiesCollection PropertiesList {
+            get { return this[PropertiesKey] as PropertiesCollection; }
+            set { this[PropertiesKey] = value; }
         }
     }
 }

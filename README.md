@@ -6,7 +6,7 @@ The Umbraco XML Sitemap comes with a number of filters out of the box to cover m
 ### No Template Filter
 This filter will remove all Umbraco nodes from the sitemap which have no display template assigned to them. 
 
-To configure this filter, use the following class in the `web.conf` of the website:
+To configure this filter, use the following class in the `xmlSitemap.config` of the website:
 ```xml
 <umbracoXmlSitemap>
   <filters>
@@ -19,7 +19,7 @@ To configure this filter, use the following class in the `web.conf` of the websi
 This filter will add all the Umbraco nodes that have a matching document type alias in the list of document type aliases provided
 in the sitemap configuration. 
 
-To configure this filter, use the following class in the `web.conf` of the website and add the whitelist of document types:
+To configure this filter, use the following class in the `xmlSitemap.config` of the website and add the whitelist of document types:
 ```xml
 <umbracoXmlSitemap>
   <filters>
@@ -37,7 +37,7 @@ To configure this filter, use the following class in the `web.conf` of the websi
 This filter will remove all the Umbraco nodes that have a matching document type alias in the list of document type aliases provided
 in the sitemap configuration. 
 
-To configure this filter, use the following class in the `web.conf` of the website and add the whitelist of document types:
+To configure this filter, use the following class in the `xmlSitemap.config` of the website and add the whitelist of document types:
 ```xml
 <umbracoXmlSitemap>
   <filters>
@@ -50,6 +50,32 @@ To configure this filter, use the following class in the `web.conf` of the websi
   </filters>
 </umbracoXmlSitemap>
 ```
+
+### Property Filter
+This filter gives the ability remove Umbraco nodes based on their properties and values.
+
+To configure this filter, use the following class in the `xmlSitemap.config` of the website and add the properties to filter on:
+```xml
+<umbracoXmlSitemap>
+  <filters>
+    <filter type="MarcelDigital.UmbracoExtensions.XmlSitemap.Filters.PropertiesFilter, MarcelDigital.UmbracoExtensions.XmlSitemap">
+        <properties>
+            <property alias="propAlias1" value="myValue" operator="equals" required="true" />
+        </properties>
+    </filter>
+  </filters>
+</umbracoXmlSitemap>
+```
+
+The filter has the following options that can be applied to configure each property to filter on:
+* Alias - The alias of the property to filter on.
+* Value - The value to check the properties value against.
+* Operator - The operator type to check he values against.
+  * Values: `equal, unequal`
+  * Default: `equal`
+* Required - If the node does not have the property, automatically remove.
+  * Values: `true, false`
+  * Default: `false`
 ## Chaining Filters
 The filters of the sitemap generator can be chained together to create complex filters. This can be done with both the built
 in filters and any custom filters that are created. The filter order will be the order that the filters appear in the configuration.

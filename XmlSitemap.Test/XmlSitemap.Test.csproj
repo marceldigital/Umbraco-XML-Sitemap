@@ -277,6 +277,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Configuration\Converters\FilterOperatorConverterTest.cs" />
     <Compile Include="Configuration\WebConfigDependencyFactoryTest.cs" />
     <Compile Include="Engines\UmbracoEngineTest.cs" />
     <Compile Include="Filters\NoTemplateFilterTest.cs" />
