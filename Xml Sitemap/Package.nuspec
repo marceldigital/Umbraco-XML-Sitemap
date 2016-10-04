@@ -2,11 +2,12 @@
 <package >
   <metadata>
     <id>MarcelDigital.UmbracoExtensions.XmlSitemap</id>
-    <version>1.0.12-rc1</version>
+    <version>1.0.12-rc2</version>
     <authors>Marcel Digital</authors>
     <owners>Marcel Digital</owners>
     <iconUrl>http://marceldigital.blob.core.windows.net/nuget/logo-64x64.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <description>Umbraco extension to output an xml sitemap.</description>
     <releaseNotes>Initial Release.</releaseNotes>
     <copyright>Copyright 2016</copyright>
