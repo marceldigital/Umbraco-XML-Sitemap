@@ -10,7 +10,7 @@
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <description>Umbraco extension to output an xml sitemap.</description>
     <releaseNotes>Initial Release.</releaseNotes>
-    <copyright>Copyright 2016</copyright>
+    <copyright>Copyright ©2016 Marcel Digital</copyright>
     <tags>Umbraco Sitemap</tags>
     <dependencies>
       <dependency id="UmbracoCms.Core" version="7.0" />
