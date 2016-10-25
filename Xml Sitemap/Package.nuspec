@@ -8,6 +8,7 @@
     <iconUrl>http://marceldigital.blob.core.windows.net/nuget/logo-64x64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/marceldigital/Umbraco-XML-Sitemap</projectUrl>
     <description>Umbraco extension to output an xml sitemap.</description>
     <releaseNotes>Initial Release.</releaseNotes>
     <copyright>Copyright ©2016 Marcel Digital</copyright>
