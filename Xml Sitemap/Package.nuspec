@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2016/06/nuspec.xsd">
   <metadata>
     <id>MarcelDigital.UmbracoExtensions.XmlSitemap</id>
-    <version>1.0.12-rc3</version>
+    <version>1.0.12</version>
     <authors>Marcel Digital</authors>
     <owners>Marcel Digital</owners>
     <iconUrl>http://marceldigital.blob.core.windows.net/nuget/logo-64x64.png</iconUrl>
