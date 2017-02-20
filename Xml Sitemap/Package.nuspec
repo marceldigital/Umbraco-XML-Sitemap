@@ -10,7 +10,7 @@
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/marceldigital/Umbraco-XML-Sitemap</projectUrl>
     <description>Umbraco extension to output an xml sitemap.</description>
-    <releaseNotes>Initial Release.</releaseNotes>
+    <releaseNotes>Fixed issue with the priority property in certain cultures.</releaseNotes>
     <copyright>Copyright ©2016 Marcel Digital</copyright>
     <tags>Umbraco Sitemap</tags>
     <dependencies>
