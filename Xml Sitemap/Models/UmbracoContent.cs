@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Xml.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -41,7 +42,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
             return new XElement("url", new XElement("loc", Location),
                 new XElement("lastmod", LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz")),
                 new XElement("changefreq", ChangeFrequency),
-                new XElement("priority", Priority.ToString("N1"))
+                new XElement("priority", Priority.ToString("N1", CultureInfo.InvariantCulture))
                 );
         }
 
