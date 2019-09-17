@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>MarcelDigital.UmbracoExtensions.XmlSitemap</id>
-    <version>1.1.0-beta1</version>
+    <version>1.1.0</version>
     <authors>Marcel Digital</authors>
     <owners>Marcel Digital</owners>
     <iconUrl>http://marceldigital.blob.core.windows.net/nuget/logo-64x64.png</iconUrl>
@@ -11,7 +11,7 @@
     <projectUrl>https://github.com/marceldigital/Umbraco-XML-Sitemap</projectUrl>
     <description>Umbraco extension to output an xml sitemap.</description>
     <releaseNotes>Updated with multisite initializer and cache.</releaseNotes>
-    <copyright>Copyright ©2016 Marcel Digital</copyright>
+    <copyright>Copyright ©2019 Marcel Digital</copyright>
     <tags>Umbraco Sitemap</tags>
     <dependencies>
       <dependency id="UmbracoCms.Core" version="7.0" />
