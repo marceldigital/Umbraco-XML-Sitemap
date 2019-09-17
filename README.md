@@ -138,7 +138,7 @@ By default the plugin assumes you are running a single site in Umbraco, so it wi
 
 ```xml
 <umbracoXmlSitemap initializer="MarcelDigital.UmbracoExtensions.XmlSitemap.Initializers.DomainInitializer, MarcelDigital.UmbracoExtensions.XmlSitemap"
-	cache="MarcelDigital.UmbracoExtensions.XmlSitemap.OptimizationHostnameCache, MarcelDigital.UmbracoExtensions.XmlSitemap">
+	cache="MarcelDigital.UmbracoExtensions.XmlSitemap.Optimization.HostnameCache, MarcelDigital.UmbracoExtensions.XmlSitemap">
 ```
 
 Simply add the attributes initialzer and cache to the `<umbracoXmlSitemap/>` node and populate them with the values above.
