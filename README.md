@@ -1,4 +1,4 @@
-# XML Sitemap Umbraco Plugin
+﻿# XML Sitemap Umbraco Plugin
 ## Installation
 `Install-Package MarcelDigital.UmbracoExtensions.XmlSitemap`
 ## Default Content Filters
@@ -121,7 +121,7 @@ namespace MyCool.NameSpace
 
 Then update the `<umbracoXmlSitemap/>` node in the `web.config`. Add the `filter` element with the new class to
 the filter list
-    
+​    
 Example:
 
 ```xml
@@ -131,3 +131,14 @@ Example:
   </filters>
 </umbracoXmlSitemap>
 ```
+
+## Multi site Umbraco instances
+
+By default the plugin assumes you are running a single site in Umbraco, so it will output all pages starting from the first found root document. If you are running a multi site Umbraco install you can enable a different initializer and cache
+
+```xml
+<umbracoXmlSitemap initializer="MarcelDigital.UmbracoExtensions.XmlSitemap.Initializers.DomainInitializer, MarcelDigital.UmbracoExtensions.XmlSitemap"
+	cache="MarcelDigital.UmbracoExtensions.XmlSitemap.OptimizationHostnameCache, MarcelDigital.UmbracoExtensions.XmlSitemap">
+```
+
+Simply add the attributes initialzer and cache to the `<umbracoXmlSitemap/>` node and populate them with the values above.
