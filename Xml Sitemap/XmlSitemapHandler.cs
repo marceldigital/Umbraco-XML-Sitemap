@@ -21,7 +21,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap {
         ///     Specifies whether the handler can be reused in the pool
         ///     or a new one needs to be created each time.
         /// </summary>
-        public bool IsReusable => true;
+        public bool IsReusable => false;
 
         /// <summary>
         ///     Caching strategy for the XML sitemap.
