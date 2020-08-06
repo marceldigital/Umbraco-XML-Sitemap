@@ -5,7 +5,7 @@ namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
     /// <summary>
     ///     Representation of the url set node of a XML sitemap.
     /// </summary>
-    internal class UrlSet : IXmlConvertable {
+    public class UrlSet : IXmlConvertable {
         /// <summary>
         ///     The xmlns attribute specifies the xml namespace for a document.
         /// </summary>

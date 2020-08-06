@@ -5,7 +5,7 @@ using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
-    internal class UmbracoContent : ISitemapContent {
+    public class UmbracoContent : ISitemapContent {
         /// <summary>
         ///     Provides the full URL of the page or sitemap, including the protocol (e.g. http, https) and a trailing slash.
         /// </summary>

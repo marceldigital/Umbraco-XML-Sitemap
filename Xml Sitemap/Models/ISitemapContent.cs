@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace MarcelDigital.UmbracoExtensions.XmlSitemap.Models {
-    internal interface ISitemapContent : IXmlConvertable {
+    public interface ISitemapContent : IXmlConvertable {
         /// <summary>
         ///     Provides the full URL of the page or sitemap, including the protocol (e.g. http, https) and a trailing slash.
         /// </summary>
